@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Age Calculator - Calculate Your Exact Age</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📅</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="background-animation"></div>
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <div class="container-fluid py-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8">
+        <div class="main-container">
+          <!-- Hero Section -->
+          <div class="hero-section py-5">
+            <div class="hero-background"></div>
+            <div class="hero-content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-12">
+                    <i class="fas fa-birthday-cake fa-3x mb-3 pulse"></i>
+                    <h1 class="display-4 fw-bold mb-3">Advanced Age Calculator</h1>
+                    <p class="lead mb-0">Discover your exact age in years, months, days, and much more!</p>
+                    <p class="mb-0">Calculate your age with precision and explore fascinating statistics about your life journey.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Calculator Section -->
+          <div class="calculator-section">
+            <div class="container py-4">
+              <form id="ageForm" class="needs-validation" novalidate>
+                <div class="row g-3 mb-4">
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="number" class="form-control" id="dayInput" placeholder="Day" min="1" max="31" required>
+                      <label for="dayInput"><i class="fas fa-calendar-day me-2"></i>Day</label>
+                      <div class="invalid-feedback" id="dayError">Please enter a valid day</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="number" class="form-control" id="monthInput" placeholder="Month" min="1" max="12" required>
+                      <label for="monthInput"><i class="fas fa-calendar-alt me-2"></i>Month</label>
+                      <div class="invalid-feedback" id="monthError">Please enter a valid month</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-floating">
+                      <input type="number" class="form-control" id="yearInput" placeholder="Year" min="1900" required>
+                      <label for="yearInput"><i class="fas fa-calendar me-2"></i>Year</label>
+                      <div class="invalid-feedback" id="yearError">Please enter a valid year</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center mb-4">
+                  <button type="submit" class="btn btn-calculate btn-lg text-white">
+                    <i class="fas fa-calculator me-2"></i>Calculate My Age
+                  </button>
+                </div>
+              </form>
+
+              <!-- Results Section -->
+              <div id="resultsSection" style="display: none;">
+                <div class="row g-3 mb-4">
+                  <div class="col-md-4">
+                    <div class="result-card">
+                      <div class="age-number" id="yearsVal">--</div>
+                      <div class="age-label">Years</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="result-card">
+                      <div class="age-number" id="monthsVal">--</div>
+                      <div class="age-label">Months</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="result-card">
+                      <div class="age-number" id="daysVal">--</div>
+                      <div class="age-label">Days</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Additional Statistics -->
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="stats-card text-center">
+                      <h5 class="text-primary mb-3"><i class="fas fa-clock me-2"></i>Time Statistics</h5>
+                      <div class="row text-center">
+                        <div class="col-6">
+                          <div class="fw-bold text-info" id="totalDays">0</div>
+                          <small class="text-muted">Total Days</small>
+                        </div>
+                        <div class="col-6">
+                          <div class="fw-bold text-warning" id="totalHours">0</div>
+                          <small class="text-muted">Total Hours</small>
+                        </div>
+                        <div class="col-6 mt-2">
+                          <div class="fw-bold text-success" id="totalMinutes">0</div>
+                          <small class="text-muted">Total Minutes</small>
+                        </div>
+                        <div class="col-6 mt-2">
+                          <div class="fw-bold text-danger" id="totalSeconds">0</div>
+                          <small class="text-muted">Total Seconds</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="stats-card">
+                      <h5 class="text-primary mb-3"><i class="fas fa-heart me-2"></i>Life Stats</h5>
+                      <div class="mb-2">
+                        <small class="text-muted">Estimated Heartbeats:</small>
+                        <div class="fw-bold text-danger" id="heartbeats">0</div>
+                      </div>
+                      <div class="mb-2">
+                        <small class="text-muted">Breaths Taken:</small>
+                        <div class="fw-bold text-info" id="breaths">0</div>
+                      </div>
+                      <div class="mb-2">
+                        <small class="text-muted">Days Until Next Birthday:</small>
+                        <div class="fw-bold text-warning" id="nextBirthday">0</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Milestones -->
+                <div class="stats-card mt-4">
+                  <h5 class="text-primary mb-3"><i class="fas fa-trophy me-2"></i>Life Milestones</h5>
+                  <div id="milestones" class="text-center"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Information Section -->
+          <div class="info-section">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 text-center mb-5">
+                  <h2 class="fw-bold text-primary">Why Calculate Your Age?</h2>
+                  <p class="lead text-muted">Understanding your age in different units can be fascinating and useful for various purposes.</p>
+                </div>
+              </div>
+              <div class="row g-4">
+                <div class="col-md-4 text-center fade-in">
+                  <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
+                  <h5 class="fw-bold">Precise Calculations</h5>
+                  <p class="text-muted">Get exact age calculations down to the day, accounting for leap years and varying month lengths.</p>
+                </div>
+                <div class="col-md-4 text-center fade-in">
+                  <div class="feature-icon">
+                    <i class="fas fa-calendar-check"></i>
+                  </div>
+                  <h5 class="fw-bold">Life Planning</h5>
+                  <p class="text-muted">Perfect for retirement planning, insurance calculations, and milestone celebrations.</p>
+                </div>
+                <div class="col-md-4 text-center fade-in">
+                  <div class="feature-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <h5 class="fw-bold">Fun Statistics</h5>
+                  <p class="text-muted">Discover interesting facts about your life journey and upcoming milestones.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="text-center py-4">
+            <p class="mb-0 text-muted">
+              <i class="fas fa-code me-2"></i>Built with <i class="fas fa-heart text-danger mx-1"></i> using Bootstrap & JavaScript
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
